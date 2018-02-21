@@ -7,7 +7,6 @@ public class MainWindow {
     private boolean limitedVision;
     private int gridSize;
     private JPanel menuPanel;
-    private JPanel mazePanel;
     private MazeGUI mazeGUI;
     
     /**
@@ -18,7 +17,7 @@ public class MainWindow {
         this.gameMode = "normal";
         this.gridSize = 30;
         this.limitedVision = false;
-          
+
         // Initialise JFrame
         this.gui = new JFrame("PokeMaze");
         
@@ -28,19 +27,17 @@ public class MainWindow {
         gui.pack();
         gui.setSize(1146,968/*1280, 720*/);
         gui.setLocationRelativeTo(null);
-        gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        gui.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
       
     
     public static void main(String[] args) {
         //Create a new menu GUI
     	//Display window in a different thread. Read about swing concurrency to understand why 
-    	SwingUtilities.invokeLater(new Runnable() {
-    		public void run() {
-        	MainWindow window = new MainWindow();
-         	window.display();
-         }
-    	});
+    	SwingUtilities.invokeLater(() -> {
+        MainWindow window = new MainWindow();
+         window.display();
+});
     }
   
     /**
@@ -105,15 +102,16 @@ public class MainWindow {
      * @return Game mode that was selected.
      */
     public int getMode() {
-    	if (this.gameMode.equals("normal")) {
-    		return 0;
-    	} else if (this.gameMode.equals("hm05")) {
-    		return 1;
-    	} else if (this.gameMode.equals("ai")) {
-    		return 2;
-    	} else if (this.gameMode.equals("pokeball")) {
-    		return 3;
-    	}
+        switch (this.gameMode) {
+            case "normal":
+                return 0;
+            case "hm05":
+                return 1;
+            case "ai":
+                return 2;
+            case "pokeball":
+                return 3;
+        }
     	return -1;
     }    
     
@@ -123,7 +121,7 @@ public class MainWindow {
     public void startMazeGUI() {
     	gui.remove(menuPanel);
     	mazeGUI = new MazeGUI(this, gridSize, getMode(), multiplayer);
-    	this.mazePanel = mazeGUI.getMazePanel();
+        JPanel mazePanel = mazeGUI.getMazePanel();
     	gui.add(mazeGUI.getWindowPanel());
     	mazePanel.setFocusable(true);
     	mazePanel.requestFocusInWindow();
@@ -152,13 +150,6 @@ public class MainWindow {
     }
 
     /**
-     * Repaints GUI
-     */
-	public void repaint() {
-		gui.repaint();
-	}
-    
-	/**
 	 * Closes the JFrame
 	 */
 	public void closeWindow() {
