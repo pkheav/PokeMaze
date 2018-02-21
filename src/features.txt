@@ -1,0 +1,33 @@
+// List of features/ideas that we may want to add to the maze puzzle.
+
+===== Core Features =====
+- Very basic maze GUI (i.e. one colour for walls and one colour for paths).
+- Detection for when a maze is completed.
+- Random maze generator (for various sizes/difficulties).
+- Basic game menu with various options.
+- Difficulty level selection (maze size etc).
+
+
+===== Extra Features =====
+- Tracking player scores/points earned.
+- Item pickups that may be placed on mazeTiles (i.e. coins)
+- Obstacles that must be navigated on mazeTiles.
+- Collectables/achievements for achieving certain tasks (i.e. defeating a maze on the hardest difficulty etc).
+- Multiplayer
+- User created mazes
+- Enemies (AI that travels through maze or in set paths).
+- Basic collision-detection (maybe include weapons that can attack enemies that are on an adjacent tile).
+> Limited visibility - can only see within a certain distance, eg. 5 squares and rest of the map is black
+
+
+===== Art =====
+- Work out a particular theme or themes for the game. (i.e. haunted/futuristic/underwater/etc)
+- Menu GUI
+- TileMap art for maze
+- Opening/loading screen (don't think we will need a loading screen unless it actually takes a while for the game to be setup. ST)
+
+
+===== MVP =====
+> Very basic maze GUI (i.e. one colour for walls and one colour for paths)
+> Detection for when a maze is completed
+> Random maze generator for fixed size maze
